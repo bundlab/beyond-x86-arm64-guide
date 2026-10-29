@@ -1,0 +1,48 @@
+services:
+  # =====================================================================
+  # 1. Multi-Architecture Build Service
+  #    Builds a single OCI image supporting both AMD64 and ARM64 platforms
+  #    and pushes it to a local registry or export cache.
+  # =====================================================================
+  multiarch-builder:
+    build:
+      context: .
+      dockerfile: labs/lab-06-docker-buildx/Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    image: beyondx86/sample-app:latest
+    # Note: Multi-platform builds cannot be directly 'started' as a single 
+    # container instance simultaneously because a container must match a single 
+    # host architecture or QEMU emulation target at runtime.
+    command: echo "Multi-arch image build complete for AMD64 and ARM64!"
+
+  # =====================================================================
+  # 2. Simulated AMD64 Runtime Service
+  #    Explicitly forces execution on linux/amd64 (using QEMU user-static 
+  #    emulation if running on an ARM64 host like Apple Silicon).
+  # =====================================================================
+  app-runtime-amd64:
+    image: beyondx86/sample-app:latest
+    platform: linux/amd64
+    container_name: app_amd64_test
+    environment:
+      - TARGET_ARCH=amd64
+    command: ["./inspect_cpu"]
+    profiles:
+      - runtime-test
+
+  # =====================================================================
+  # 3. Simulated ARM64 Runtime Service
+  #    Explicitly forces execution on linux/arm64 (using QEMU user-static 
+  #    emulation if running on an x86_64 host).
+  # =====================================================================
+  app-runtime-arm64:
+    image: beyondx86/sample-app:latest
+    platform: linux/arm64
+    container_name: app_arm64_test
+    environment:
+      - TARGET_ARCH=arm64
+    command: ["./inspect_cpu"]
+    profiles:
+      - runtime-test

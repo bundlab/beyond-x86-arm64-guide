@@ -1,0 +1,107 @@
+# ==========================================
+# C / C++ Compiled Binaries & Build Objects
+# ==========================================
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+# Lab binaries generated during testing
+inspect_cpu
+memory_ordering
+neon_benchmark
+
+# ==========================================
+# Rust
+# ==========================================
+/target/
+**/*.rs.bk
+
+# ==========================================
+# Go
+# ==========================================
+/bin/
+*.exe~
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+
+# ==========================================
+# IDEs & Text Editors
+# ==========================================
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.iws
+
+# Vim / Emacs swap files
+*.swp
+*.swo
+*~
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.fuse_hidden*
+
+# ==========================================
+# Docker & Containers
+# ==========================================
+.docker/
+docker-compose.override.yml
